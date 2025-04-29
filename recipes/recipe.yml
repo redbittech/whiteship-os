@@ -3,11 +3,11 @@
 # image will be published to ghcr.io/<user>/<name>
 name: whiteship-os
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Custom Immutable Fedora with Qtile WM - Supports nvidia drivers
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 41 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/base-nvidia
+image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -21,8 +21,24 @@ modules:
     repos:
       - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
     install:
-      - micro
-      - starship
+      # - micro
+      # - starship
+      - ly
+      - qtile
+      - pcmanfm
+      - rofi
+      - alacritty
+      - picom
+      - cmus
+      - nvim
+      - dunst
+      - feh
+      - eww
+      - brightnessctl
+      - pamixer
+      - pavucontrol
+      - lxappearance
+      - lf
     remove:
       # example: removing firefox (in favor of the flatpak)
       # "firefox" is the main package, "firefox-langpacks" is a dependency
@@ -35,7 +51,14 @@ modules:
       # If no repo information is specified, Flathub will be used by default
       install:
         - org.mozilla.firefox
-        - org.gnome.Loupe
+        - org.videolan.VLC
+        - org.winehq.Wine
+        - net.lutris.Lutris
+        - io.mgba.mGBA
+        - org.libreoffice.LibreOffice
+        - com.surfshark.Surfshark
+        - md.obsidian.Obsidian
+        # - org.gnome.Loupe
       remove:
         - org.gnome.eog
     user: {} # Also add Flathub user repo, but no user packages
